@@ -5,13 +5,12 @@
 #ifndef PONG_SFMLMATH_HPP
 #define PONG_SFMLMATH_HPP
 
-#include <boost/math/constants/constants.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <iostream>
+#include <cmath>
 
 namespace sf
 {
-    static constexpr double PI = boost::math::constants::pi<double>();
+    static const auto PI = acos( -1 );
 
     /*
      * Vector addition
@@ -62,7 +61,7 @@ namespace sf
     }
 
     /*
-     * Returns the scalar product of two given vectors
+     * Returns the dot product of two given vectors
      */
     template <typename T>
     double operator*( const T& vec1, const T& vec2 )
