@@ -25,22 +25,7 @@ void Paddle::init()
 
 void Paddle::eventHandler( const sf::Event& event )
 {
-    /*
-    if ( event.type == sf::Event::KeyPressed )
-    {
-        if ( event.key.code == sf::Keyboard::Up )
-            nextMoveUp = true;
-        else if ( event.key.code == sf::Keyboard::Down )
-            nextMoveDown = true;
-    }
-    else if ( event.type == sf::Event::KeyReleased )
-    {
-        if ( event.key.code == sf::Keyboard::Up )
-            nextMoveUp = false;
-        else if ( event.key.code == sf::Keyboard::Down )
-            nextMoveDown = false;
-    }
-     */
+    Node::eventHandler( event );
 }
 
 void Paddle::draw( sf::RenderWindow& window )
@@ -90,3 +75,9 @@ const sf::Vector2f& Paddle::getPosition() const
 {
     return rectangle.getPosition();
 }
+
+float Paddle::getSpeed()
+{
+    return speed;
+}
+

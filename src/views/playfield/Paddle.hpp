@@ -31,6 +31,8 @@ public:
     const float getPaddleWidth() const;
     const float getPaddleHeight() const;
     const sf::Vector2f& getPosition() const;
+    float getSpeed();
+
 };
 
 #endif //PONG_PADDLE_HPP

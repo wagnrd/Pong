@@ -1,0 +1,5 @@
+Example data (will be cleared)
+
+BallPosX | BallPosY | BallMoveX | BallMoveY | PaddlePosY | PredPosY | RealPosY
+
+300.0 400.0 -20.0 0.0 200.0 432.3 400.0

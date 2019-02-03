@@ -58,11 +58,11 @@ void PlayfieldView::draw( sf::RenderWindow& window )
 {
     window.clear( sf::Color::Black );
 
+    paddle1->draw( window );
+    paddle2->draw( window );
     ball.draw( window );
     leftScore.draw( window );
     rightScore.draw( window );
-    paddle1->draw( window );
-    paddle2->draw( window );
 
     // draw middle line
     for ( auto rectangle : middleLineRectangles )
@@ -75,4 +75,9 @@ void PlayfieldView::incrementScore( Side side )
         leftScore.incrementScore( 1 );
     else
         rightScore.incrementScore( 1 );
+}
+
+Ball& PlayfieldView::getBall()
+{
+    return ball;
 }

@@ -36,6 +36,9 @@ public:
     Ball( std::shared_ptr<Paddle> leftPaddle, std::shared_ptr<Paddle> rightPaddle );
     virtual void init() override;
     virtual void draw( sf::RenderWindow& window ) override;
+    float getBallRadius();
+    sf::Vector2f getPosition();
+    sf::Vector2f getMoveVector();
 };
 
 #endif //PONG_BALL_HPP

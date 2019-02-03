@@ -120,7 +120,7 @@ void Ball::draw( sf::RenderWindow& window )
     // detect paddle collision and prevent clipping through
     sf::Vector2f  leftPaddleVector  = leftPaddle->getPosition();
     sf::Vector2f  rightPaddleVector = rightPaddle->getPosition();
-    constexpr int ballToleranz      = 7;
+    constexpr int ballToleranz      = 7;   // how much of the ball can clip through the edges of the paddle
 
     if ( ballVector.x <= leftPaddleVector.x + leftPaddle->getPaddleWidth() &&
          ballVector.x + ballDiameter >= leftPaddleVector.x + ballSpeed &&
@@ -140,8 +140,23 @@ void Ball::draw( sf::RenderWindow& window )
         collisionLeft = true;
     }
 
-    // apply the ajusted position to the ball
+    // apply the adjusted position to the ball
     circle.setPosition( ballVector );
 
     window.draw( circle );
+}
+
+sf::Vector2f Ball::getPosition()
+{
+    return circle.getPosition();
+}
+
+float Ball::getBallRadius()
+{
+    return ballRadius;
+}
+
+sf::Vector2f Ball::getMoveVector()
+{
+    return moveVector;
 }

@@ -30,6 +30,8 @@ public:
     virtual void eventHandler( const sf::Event& event ) override;
     void reset();
     void incrementScore( Side side );
+    Ball& getBall();
+
 };
 
 #endif //PONG_PLAYFIELDVIEW_HPP
