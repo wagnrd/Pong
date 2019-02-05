@@ -15,16 +15,16 @@ class NNAI : public Paddle {
     OpenNN::NeuralNetwork    neuralNetwork;
     OpenNN::TrainingStrategy trainingStrategy;
     PlayfieldView* playfield;
+    std::vector<std::string> playfieldData;
 
 public:
     NNAI( Side side );
     virtual void init() override;
-    virtual void eventHandler( const sf::Event& event ) override;
     virtual void draw( sf::RenderWindow& window ) override;
+    virtual void scored( Side side ) override;
 
 private:
     void calculateNextMove();
-    void trainGatheredData();
 };
 
 #endif //PONG_NNAI_HPP

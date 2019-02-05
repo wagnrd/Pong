@@ -5,7 +5,7 @@
 #include "Game.hpp"
 #include "views/playfield/PlayfieldView.hpp"
 #include "views/startScreen/StartScreenView.hpp"
-#include "views/menuView/MenuView.hpp"
+#include "views/menu/MenuView.hpp"
 #include "players/ArrowKeyPlayer.hpp"
 //#include "players/WSPlayer.hpp"
 #include "players/NNAI.hpp"

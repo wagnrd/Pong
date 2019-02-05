@@ -21,8 +21,8 @@ add_executable(
         src/views/playfield/Paddle.hpp
         src/views/startScreen/StartScreenView.cpp
         src/views/startScreen/StartScreenView.hpp
-        src/views/menuView/MenuView.cpp
-        src/views/menuView/MenuView.hpp
+        src/views/menu/MenuView.cpp
+        src/views/menu/MenuView.hpp
         src/players/ArrowKeyPlayer.cpp
         src/players/ArrowKeyPlayer.hpp
         src/players/WSPlayer.cpp

@@ -17,5 +17,5 @@ The game Pong with coop mode in its original arcade look.
 * [SFML 2.5](https://github.com/SFML/sfml)
 * [SFMLApp](https://github.com/wagnrd/SFMLApp) (included in source code)
 * [SFMLMath](https://github.com/wagnrd/SFMLMath) (included in source code)
-* [OpenNN](https://github.com/Artelnics/OpenNN) (included in source code)
+* [OpenNN](https://github.com/Artelnics/OpenNN)
 * C++11 (C++17 is recommended)

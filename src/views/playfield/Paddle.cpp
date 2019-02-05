@@ -11,9 +11,8 @@ Paddle::Paddle( Side side )
 
 void Paddle::init()
 {
-    constexpr float wallOffset   = 20;
-    const float     windowWidth  = application->getWindowWidth();
-    const float     windowHeight = application->getWindowHeight();
+    const float windowWidth  = application->getWindowWidth();
+    const float windowHeight = application->getWindowHeight();
 
     rectangle.setSize( sf::Vector2f( paddleWidth, paddleHeight ) );
 
@@ -81,3 +80,11 @@ float Paddle::getSpeed()
     return speed;
 }
 
+void Paddle::scored( Side side )
+{
+}
+
+float Paddle::getWallOffset()
+{
+    return wallOffset;
+}

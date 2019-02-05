@@ -37,8 +37,8 @@ public:
     virtual void init() override;
     virtual void draw( sf::RenderWindow& window ) override;
     float getBallRadius();
-    sf::Vector2f getPosition();
-    sf::Vector2f getMoveVector();
+    const sf::Vector2f& getPosition();
+    const sf::Vector2f& getMoveVector();
 };
 
 #endif //PONG_BALL_HPP

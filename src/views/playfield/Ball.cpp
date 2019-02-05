@@ -36,22 +36,26 @@ void Ball::draw( sf::RenderWindow& window )
         waitCounter = 60; // clamp to not cause an overflow
 
     // detect ball out of playfield and reset/return
-    sf::Vector2f ballVector      = circle.getPosition();
-    const float  windowWidth     = application->getWindowWidth();
-    const float  windowHeight    = application->getWindowHeight();
-    const float  ballDiameter    = 2 * ballRadius;
-    const float  angleCorrection = 10;
+    sf::Vector2f    ballVector      = circle.getPosition();
+    const float     windowWidth     = application->getWindowWidth();
+    const float     windowHeight    = application->getWindowHeight();
+    const float     ballDiameter    = 2 * ballRadius;
+    constexpr float angleCorrection = 10;
 
-    if ( ballVector.x + ballDiameter < 0 )
+    if ( ballVector.x + ballDiameter < leftPaddle->getPaddleWidth() + leftPaddle->getWallOffset() )
     {
         init();
         static_cast<PlayfieldView*>(parent)->incrementScore( Side::RIGHT );
+        leftPaddle->scored( Side::RIGHT );
+        rightPaddle->scored( Side::RIGHT );
         return;
     }
-    else if ( ballVector.x > windowWidth )
+    else if ( ballVector.x > windowWidth - rightPaddle->getPaddleWidth() - rightPaddle->getWallOffset() )
     {
         init();
         static_cast<PlayfieldView*>(parent)->incrementScore( Side::LEFT );
+        leftPaddle->scored( Side::LEFT );
+        rightPaddle->scored( Side::LEFT );
         return;
     }
 
@@ -120,12 +124,12 @@ void Ball::draw( sf::RenderWindow& window )
     // detect paddle collision and prevent clipping through
     sf::Vector2f  leftPaddleVector  = leftPaddle->getPosition();
     sf::Vector2f  rightPaddleVector = rightPaddle->getPosition();
-    constexpr int ballToleranz      = 7;   // how much of the ball can clip through the edges of the paddle
+    constexpr int ballTolerance     = 7;   // how much of the ball can clip through the edges of the paddle
 
     if ( ballVector.x <= leftPaddleVector.x + leftPaddle->getPaddleWidth() &&
          ballVector.x + ballDiameter >= leftPaddleVector.x + ballSpeed &&
-         ballVector.y + ballRadius + ballToleranz > leftPaddleVector.y &&
-         ballVector.y + ballToleranz < leftPaddleVector.y + leftPaddle->getPaddleHeight() )
+         ballVector.y + ballRadius + ballTolerance > leftPaddleVector.y &&
+         ballVector.y + ballTolerance < leftPaddleVector.y + leftPaddle->getPaddleHeight() )
     {
         ballVector.x = leftPaddleVector.x + leftPaddle->getPaddleWidth();
         collisionRight = true;
@@ -133,8 +137,8 @@ void Ball::draw( sf::RenderWindow& window )
 
     if ( ballVector.x + ballDiameter >= rightPaddleVector.x &&
          ballVector.x + ballDiameter <= rightPaddleVector.x + ballSpeed &&
-         ballVector.y + ballRadius + ballToleranz > rightPaddleVector.y &&
-         ballVector.y + ballToleranz < rightPaddleVector.y + rightPaddle->getPaddleHeight() )
+         ballVector.y + ballRadius + ballTolerance > rightPaddleVector.y &&
+         ballVector.y + ballTolerance < rightPaddleVector.y + rightPaddle->getPaddleHeight() )
     {
         ballVector.x = rightPaddleVector.x - ballDiameter;
         collisionLeft = true;
@@ -146,7 +150,7 @@ void Ball::draw( sf::RenderWindow& window )
     window.draw( circle );
 }
 
-sf::Vector2f Ball::getPosition()
+const sf::Vector2f& Ball::getPosition()
 {
     return circle.getPosition();
 }
@@ -156,7 +160,7 @@ float Ball::getBallRadius()
     return ballRadius;
 }
 
-sf::Vector2f Ball::getMoveVector()
+const sf::Vector2f& Ball::getMoveVector()
 {
     return moveVector;
 }

@@ -13,6 +13,7 @@ class Paddle : public Node {
     sf::RectangleShape rectangle;
     const float        paddleWidth  = 25;
     const float        paddleHeight = 100;
+    const float        wallOffset   = 20;
     const float        speed        = 15;
 
 protected:
@@ -25,6 +26,7 @@ public:
     virtual void init() override;
     virtual void eventHandler( const sf::Event& event ) override;
     virtual void draw( sf::RenderWindow& window ) override;
+    virtual void scored( Side side );
 
     void moveDown();
     void moveUp();
@@ -32,7 +34,7 @@ public:
     const float getPaddleHeight() const;
     const sf::Vector2f& getPosition() const;
     float getSpeed();
-
+    float getWallOffset();
 };
 
 #endif //PONG_PADDLE_HPP
