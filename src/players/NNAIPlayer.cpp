@@ -5,10 +5,11 @@
 #include "NNAIPlayer.hpp"
 #include "../views/playfield/PlayfieldView.hpp"
 
-// Medium: ~60 trainings with ~6.000 Data Entries
-// Pro: ~300 trainings with ~35.000 Data Entries
-// Nearly Perfect: ~570 trainings ~75.000 Data Entries
-// Nearly Perfect2: ~1200 trainings ~165.000 Data Entries
+// Easy: ~60 trainings with ~6.000 Data Entries
+// Medium: ~300 trainings with ~35.000 Data Entries
+// Hard: ~1200 trainings ~165.000 Data Entries
+// Hard2: ~570 trainings ~75.000 Data Entries
+// Between Medium and Hard/Hard2 is no considerable difference in skill
 
 NNAIPlayer::NNAIPlayer( Side side, Skill skill )
         : Paddle( side ), skill( skill )

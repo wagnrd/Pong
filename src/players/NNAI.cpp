@@ -44,17 +44,11 @@ void NNAI::init()
 
         // Neural network
         neuralNetwork.set( 4, 20, 1 );  // 20 hidden neurons work great
-        //neuralNetwork.randomize_parameters_uniform( -100, 100 );
+        //neuralNetwork.randomize_parameters_uniform( -100, 100 );  // randomizing doesnt work well
+
         neuralNetwork.get_multilayer_perceptron_pointer()
                      ->set_layer_activation_function( 0, OpenNN::PerceptronLayer::ActivationFunction::SoftSign );
-        /*
-        neuralNetwork.get_multilayer_perceptron_pointer()
-                     ->set_layer_activation_function( 1, OpenNN::PerceptronLayer::ActivationFunction::RectifiedLinear );
-        /
-        neuralNetwork.get_multilayer_perceptron_pointer()
-                     ->set_layer_activation_function( 2, OpenNN::PerceptronLayer::ActivationFunction::SoftSign );
-        //*/
-        // SoftSign is very good
+        // SoftSign works very good
 
         OpenNN::Inputs* inputsPointer = neuralNetwork.get_inputs_pointer();
         inputsPointer->set_information( inputsInformation );
@@ -69,7 +63,7 @@ void NNAI::init()
 
         OpenNN::QuasiNewtonMethod* quasiNewtonMethodPointer = trainingStrategy.get_quasi_Newton_method_pointer();
         quasiNewtonMethodPointer->set_display_period( 60 );
-        quasiNewtonMethodPointer->set_maximum_epochs_number( 60 ); // 50 works great
+        quasiNewtonMethodPointer->set_maximum_epochs_number( 60 ); // 50 - 60 works great
         quasiNewtonMethodPointer->get_learning_rate_algorithm_pointer()
                                 ->set_training_rate_method(
                                         OpenNN::LearningRateAlgorithm::LearningRateMethod::GoldenSection );
@@ -161,7 +155,6 @@ void NNAI::scored( Side side )
 
 
     ////// ACTUAL TRAINING //////
-    // Training strategy
     dataSet.set_data_file_name( "../data/playfieldData" + getSideString() + ".dat" );
     dataSet.load_data();
 
@@ -176,7 +169,7 @@ void NNAI::scored( Side side )
 
     // save current neural network state to a file
     neuralNetwork.save( "../data/neuralNetwork" + getSideString() + ".xml" );
-    neuralNetwork.save_expression( "../data/neuralNetworkExpression" + getSideString() + ".txt" );
+    //neuralNetwork.save_expression( "../data/neuralNetworkExpression" + getSideString() + ".txt" ); // isnt really needed
 
     // clear old data from playfieldData vector
     playfieldData.clear();
