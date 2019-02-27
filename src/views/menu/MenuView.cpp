@@ -6,15 +6,16 @@
 
 void MenuView::init()
 {
-    application->getWindow()->setFramerateLimit( 1 );
+    application->getWindow()->setFramerateLimit( 30 );
 
     const float     windowMiddleWidth     = application->getWindowWidth() / 2;
     const float     windowMiddleHeight    = application->getWindowHeight() / 2;
     const float     backgroundWidth       = 800;
-    const float     backgroundHeight      = 385;
-    const float     backgroundBorderWidth = 18;
-    constexpr float backgroundOffset      = 36;
-    font.loadFromFile( "../bit5x5.ttf" );
+    const float     backgroundHeight      = 400;
+    const float     backgroundBorderWidth = 15;
+    constexpr float backgroundOffset      = 33;
+    fontTitle.loadFromFile( "../bit5x5.ttf" );
+    fontInstruction.loadFromFile( "../bit9x9.otf" );
 
     // init background
     outerBackground.setSize( sf::Vector2f( backgroundWidth, backgroundHeight ) );
@@ -30,10 +31,10 @@ void MenuView::init()
 
     // init title text
     title.setString( "Pause" );
-    title.setFont( font );
+    title.setFont( fontTitle );
     title.setCharacterSize( 130 );
 
-    constexpr float titleOffset     = 130;
+    constexpr float titleOffset     = 120;
     float           textMiddleWidth = title.getLocalBounds().width / 2;
     float           textHeight      = title.getLocalBounds().height;
 
@@ -42,7 +43,8 @@ void MenuView::init()
     // init inistruction text
     instructions.setString( "Enter - Resume game\n"
                             "Esc - Title screen" );
-    instructions.setFont( font );
+    instructions.setFont( fontInstruction );
+    instructions.setLineSpacing( 1.3 );
     instructions.setCharacterSize( 50 );
 
     textMiddleWidth = instructions.getLocalBounds().width / 2;

@@ -19,11 +19,12 @@ void StartScreenView::init()
 
     const float windowMiddleWidth  = application->getWindowWidth() / 2;
     const float windowMiddleHeight = application->getWindowHeight() / 2;
-    font.loadFromFile( "../bit5x5.ttf" );
+    fontTitle.loadFromFile( "../bit5x5.ttf" );
+    fontInstruction.loadFromFile( "../bit9x9.otf" );
 
     // init title text
     title.setString( "PONG" );
-    title.setFont( font );
+    title.setFont( fontTitle );
     title.setCharacterSize( 160 );
 
     float textMiddleWidth = title.getLocalBounds().width / 2;
@@ -33,9 +34,10 @@ void StartScreenView::init()
 
     // init inistruction text
     instructions.setString( "Enter - Start game\n"
-                            "F - Toggle fullscreen\n"
+                            "S - Settings\n"
                             "Esc - Exit/Pause game" );
-    instructions.setFont( font );
+    instructions.setFont( fontInstruction );
+    instructions.setLineSpacing( 1.3 );
     instructions.setCharacterSize( 50 );
 
     textMiddleWidth = instructions.getLocalBounds().width / 2;
@@ -51,12 +53,9 @@ void StartScreenView::eventHandler( const sf::Event& event )
         {
             application->setNode( "Playfield" );
         }
-        else if ( event.key.code == sf::Keyboard::F )
+        else if ( event.key.code == sf::Keyboard::S )
         {
-            fullscreen = !fullscreen;
-            application->setFullscreen( fullscreen );
-            application->getWindow()->setFramerateLimit( 1 );
-            init();
+            application->setNode( "SettingsView" );
         }
         else if ( event.key.code == sf::Keyboard::Escape )
         {

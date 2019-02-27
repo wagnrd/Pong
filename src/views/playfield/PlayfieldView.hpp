@@ -19,9 +19,9 @@ class PlayfieldView : public Node {
     // nodes
     ScoreDisplay            leftScore{ Side::LEFT };
     ScoreDisplay            rightScore{ Side::RIGHT };
-    std::shared_ptr<Paddle> paddle1;
-    std::shared_ptr<Paddle> paddle2;
-    Ball                    ball{ paddle1, paddle2 };
+    std::shared_ptr<Paddle> leftPaddle;
+    std::shared_ptr<Paddle> rightPaddle;
+    Ball                    ball;
 
 public:
     PlayfieldView( std::shared_ptr<Paddle> leftPaddle, std::shared_ptr<Paddle> rightPaddle );
@@ -31,7 +31,10 @@ public:
     void reset();
     void incrementScore( Side side );
     Ball& getBall();
-
+    void setLeftPaddle( std::shared_ptr<Paddle> leftPaddle );
+    void setRightPaddle( std::shared_ptr<Paddle> rightPaddle );
+    const std::shared_ptr<Paddle>& getLeftPaddle() const;
+    const std::shared_ptr<Paddle>& getRightPaddle() const;
 };
 
 #endif //PONG_PLAYFIELDVIEW_HPP

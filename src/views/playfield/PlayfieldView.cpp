@@ -6,7 +6,7 @@
 #include "PlayfieldView.hpp"
 
 PlayfieldView::PlayfieldView( std::shared_ptr<Paddle> leftPaddle, std::shared_ptr<Paddle> rightPaddle )
-        : paddle1( std::move( leftPaddle ) ), paddle2( std::move( rightPaddle ) )
+        : leftPaddle( std::move( leftPaddle ) ), rightPaddle( std::move( rightPaddle ) )
 {
 }
 
@@ -29,8 +29,8 @@ void PlayfieldView::init()
         }
 
         ball.initChild( application, this );
-        paddle1->initChild( application, this );
-        paddle2->initChild( application, this );
+        leftPaddle->initChild( application, this );
+        rightPaddle->initChild( application, this );
         leftScore.initChild( application, this );
         rightScore.initChild( application, this );
 
@@ -50,16 +50,16 @@ void PlayfieldView::eventHandler( const sf::Event& event )
     if ( event.key.code == sf::Keyboard::Escape )
         application->setNode( "MenuView" );
 
-    paddle2->eventHandler( event );
-    paddle1->eventHandler( event );
+    rightPaddle->eventHandler( event );
+    leftPaddle->eventHandler( event );
 }
 
 void PlayfieldView::draw( sf::RenderWindow& window )
 {
     window.clear( sf::Color::Black );
 
-    paddle1->draw( window );
-    paddle2->draw( window );
+    leftPaddle->draw( window );
+    rightPaddle->draw( window );
     ball.draw( window );
     leftScore.draw( window );
     rightScore.draw( window );
@@ -80,4 +80,24 @@ void PlayfieldView::incrementScore( Side side )
 Ball& PlayfieldView::getBall()
 {
     return ball;
+}
+
+void PlayfieldView::setLeftPaddle( std::shared_ptr<Paddle> leftPaddle )
+{
+    this->leftPaddle = std::move( leftPaddle );
+}
+
+void PlayfieldView::setRightPaddle( std::shared_ptr<Paddle> rightPaddle )
+{
+    this->rightPaddle = std::move( rightPaddle );
+}
+
+const std::shared_ptr<Paddle>& PlayfieldView::getLeftPaddle() const
+{
+    return leftPaddle;
+}
+
+const std::shared_ptr<Paddle>& PlayfieldView::getRightPaddle() const
+{
+    return rightPaddle;
 }

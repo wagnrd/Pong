@@ -23,12 +23,19 @@ add_executable(
         src/views/startScreen/StartScreenView.hpp
         src/views/menu/MenuView.cpp
         src/views/menu/MenuView.hpp
+        src/views/settings/SettingsView.cpp
+        src/views/settings/SettingsView.hpp
         src/players/ArrowKeyPlayer.cpp
         src/players/ArrowKeyPlayer.hpp
         src/players/WSPlayer.cpp
         src/players/WSPlayer.hpp
         SFMLMath/SFMLMath.hpp      # add SFMLMath
-        src/players/NNAI.cpp src/players/NNAI.hpp)
+        src/players/NNAI.cpp
+        src/players/NNAI.hpp
+        src/views/settings/SettingsView.cpp
+        src/views/settings/SettingsView.hpp
+        src/players/NNAIPlayer.cpp
+        src/players/NNAIPlayer.hpp src/players/Skill.hpp)
 
 # add SFML
 find_package(SFML 2.5 COMPONENTS graphics)

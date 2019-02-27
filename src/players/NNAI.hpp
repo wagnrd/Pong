@@ -22,9 +22,11 @@ public:
     virtual void init() override;
     virtual void draw( sf::RenderWindow& window ) override;
     virtual void scored( Side side ) override;
+    virtual void reflected( Side side ) override;
 
 private:
     void calculateNextMove();
+    std::string getSideString();
 };
 
 #endif //PONG_NNAI_HPP

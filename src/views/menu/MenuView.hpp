@@ -14,7 +14,8 @@ class MenuView : public Node {
     sf::RectangleShape innerBackground;
     sf::Text           title;
     sf::Text           instructions;
-    sf::Font           font;
+    sf::Font           fontTitle;
+    sf::Font           fontInstruction;
 
 public:
     virtual void init() override;

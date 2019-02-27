@@ -11,9 +11,13 @@
 #include <random>
 #include "Paddle.hpp"
 
+class PlayfieldView;
+
 class Ball : public Node {
+    PlayfieldView* playfieldView;
+
     const float     ballRadius   = 10;
-    const float     ballSpeed    = 18;
+    const float     ballSpeed    = 15;
     sf::CircleShape circle;
     int             waitCounter;
 
@@ -33,7 +37,6 @@ class Ball : public Node {
     std::shared_ptr<Paddle> rightPaddle;
 
 public:
-    Ball( std::shared_ptr<Paddle> leftPaddle, std::shared_ptr<Paddle> rightPaddle );
     virtual void init() override;
     virtual void draw( sf::RenderWindow& window ) override;
     float getBallRadius();

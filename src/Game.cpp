@@ -6,8 +6,8 @@
 #include "views/playfield/PlayfieldView.hpp"
 #include "views/startScreen/StartScreenView.hpp"
 #include "views/menu/MenuView.hpp"
+#include "views/settings/SettingsView.hpp"
 #include "players/ArrowKeyPlayer.hpp"
-//#include "players/WSPlayer.hpp"
 #include "players/NNAI.hpp"
 
 Game::Game( std::string windowText, float windowWidth, float windowHeight )
@@ -17,14 +17,14 @@ Game::Game( std::string windowText, float windowWidth, float windowHeight )
 
 void Game::init()
 {
+    auto nnAILeft       = std::make_shared<NNAI>( Side::LEFT );
     auto arrowKeyPlayer = std::make_shared<ArrowKeyPlayer>( Side::RIGHT );
-    auto nnAI           = std::make_shared<NNAI>( Side::LEFT );
-    //auto wsPlayer  = std::make_shared<WSPlayer>( Side::LEFT );
-    auto playfield      = std::make_shared<PlayfieldView>( nnAI, arrowKeyPlayer );
+    auto playfieldView  = std::make_shared<PlayfieldView>( nnAILeft, arrowKeyPlayer );
 
-    addNode( "Playfield", playfield );
-    addNode( "StartScreen", std::make_shared<StartScreenView>( playfield ) );
+    addNode( "Playfield", playfieldView );
+    addNode( "StartScreen", std::make_shared<StartScreenView>( playfieldView ) );
     addNode( "MenuView", std::make_shared<MenuView>() );
+    addNode( "SettingsView", std::make_shared<SettingsView>( playfieldView ) );
     setNode( "StartScreen" );
 }
 

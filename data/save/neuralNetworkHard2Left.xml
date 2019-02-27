@@ -1,0 +1,49 @@
+<NeuralNetwork>
+    <Inputs>
+        <InputsNumber>4</InputsNumber>
+        <Item Index="1">
+            <Name>BallPositionX</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+        <Item Index="2">
+            <Name>BallPositionY</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+        <Item Index="3">
+            <Name>BallMoveX</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+        <Item Index="4">
+            <Name>BallMoveY</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Inputs>
+    <MultilayerPerceptron>
+        <Architecture>4 20 1</Architecture>
+        <LayersActivationFunction>SoftSign Linear</LayersActivationFunction>
+        <Parameters>0.00700886 0.00414493 1.64059 -2.25823 -0.0167733 -0.00683408 -0.127146 0.493737 0.676003 4.94108
+            81.5027 -80.5592 -0.119039 0.0425146 -19.7191 -28.1572 -0.00111758 -0.00166028 -0.687896 0.183435 20.9208
+            8.43622 -0.52439 -0.00758945 -13.2975 -20.7722 -1.00313 0.838197 0.0110632 0.00336665 1.31401 -2.33847
+            -0.166449 -0.0096944 115.719 -1.04278 0.00109272 0.00267837 0.231059 0.0970036 0.00469932 -0.00711293
+            -2.57568 -1.37294 -0.00388083 0.00657433 7.78049 -1.30796 -0.013277 -0.00549327 -1.74867 0.317186 0.00141778
+            0.00162024 0.268929 -0.0057977 13.9425 -9.07936 -24.2308 94.4329 -0.383096 30.2002 10.504 -3.73645 -25.2022
+            9.48586 18.396 34.3875 -0.152847 -47.8972 48.6495 23.8079 -0.0336146 0.0166817 -2.2246 -2.86911 13.1548
+            9.04976 -2.24595 -0.873705 38.8288 -4.94261 -21.6415 -479.405 -9.3255 -0.20547 1.2637 35.3845 -416.94
+            1.71521 -41.3304 82.2454 -4.39236 1.08567 61.3022 1.53833 -85.0958 -12.4197 -56.3651 -0.881066 737.321
+            -319.485 17.9297 -242.601 -256.525 -66.6088 65.3575 -505.299 16.3991 437.153 -208.444 100.812 -378.24
+            -1161.57 5.27587 -58.1673 14.236 123.818 227.484 -109.841 -68.8489
+        </Parameters>
+    </MultilayerPerceptron>
+    <Outputs>
+        <OutputsNumber>1</OutputsNumber>
+        <Item Index="1">
+            <Name>RealBallPosition</Name>
+            <Units></Units>
+            <Description></Description>
+        </Item>
+    </Outputs>
+</NeuralNetwork>

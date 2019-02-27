@@ -12,7 +12,8 @@
 class StartScreenView : public Node {
     sf::Text title;
     sf::Text instructions;
-    sf::Font font;
+    sf::Font fontTitle;
+    sf::Font fontInstruction;
     bool     fullscreen = false;
 
     std::shared_ptr<PlayfieldView> playfield;

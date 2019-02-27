@@ -84,6 +84,10 @@ void Paddle::scored( Side side )
 {
 }
 
+void Paddle::reflected( Side side )
+{
+}
+
 float Paddle::getWallOffset()
 {
     return wallOffset;

@@ -2,18 +2,17 @@
 // Created by Denis Wagner on 1/14/19.
 //
 
+#include <iostream>
 #include "../../../SFMLMath/SFMLMath.hpp"
 #include "Ball.hpp"
 #include "PlayfieldView.hpp"
 
-Ball::Ball( std::shared_ptr<Paddle> leftPaddle, std::shared_ptr<Paddle> rightPaddle )
-        : leftPaddle( std::move( leftPaddle ) ), rightPaddle( std::move( rightPaddle ) )
-{
-    rng.seed( std::random_device()() );
-}
-
 void Ball::init()
 {
+    playfieldView = static_cast<PlayfieldView*>(parent);
+    leftPaddle    = playfieldView->getLeftPaddle();
+    rightPaddle   = playfieldView->getRightPaddle();
+
     circle.setRadius( ballRadius );
     circle.setPosition( application->getWindowWidth() / 2 - ballRadius,
                         application->getWindowHeight() / 2 - ballRadius );
@@ -23,17 +22,19 @@ void Ball::init()
     // init moveVector for better debugging
     //moveVector = sf::Vector2f( ballSpeed, 0 );
     sf::rotate( moveVector, randomAngle( rng ) );
-    //sf::rotate( moveVector, 180 );
+    //sf::rotate( moveVector, 150 );
 }
 
 void Ball::draw( sf::RenderWindow& window )
 {
     // wait a couple of frames to not scare the player with balls coming out of nowhere
     // 60 frames = 1 second -> 120 frames = 2 seconds
+    /*
     if ( ++waitCounter < 60 )
         return;
     else
         waitCounter = 60; // clamp to not cause an overflow
+        */
 
     // detect ball out of playfield and reset/return
     sf::Vector2f    ballVector      = circle.getPosition();
@@ -44,18 +45,24 @@ void Ball::draw( sf::RenderWindow& window )
 
     if ( ballVector.x + ballDiameter < leftPaddle->getPaddleWidth() + leftPaddle->getWallOffset() )
     {
-        init();
-        static_cast<PlayfieldView*>(parent)->incrementScore( Side::RIGHT );
+        // notify paddles, that the ball went out of playfield
         leftPaddle->scored( Side::RIGHT );
         rightPaddle->scored( Side::RIGHT );
+
+        playfieldView->incrementScore( Side::RIGHT );
+        init();
+
         return;
     }
     else if ( ballVector.x > windowWidth - rightPaddle->getPaddleWidth() - rightPaddle->getWallOffset() )
     {
-        init();
-        static_cast<PlayfieldView*>(parent)->incrementScore( Side::LEFT );
+        // notify paddles, that the ball went out of playfield
         leftPaddle->scored( Side::LEFT );
         rightPaddle->scored( Side::LEFT );
+
+        playfieldView->incrementScore( Side::LEFT );
+        init();
+
         return;
     }
 
@@ -93,15 +100,22 @@ void Ball::draw( sf::RenderWindow& window )
     if ( collisionLeft )
     {
         const double angle = sf::getAngleBetween( moveVector, paddleDirectionVector );
-        sf::invert( sf::rotate( moveVector, 180 - 2 * angle + randomOffsetAngle( rng ) ) );
+        sf::invert( sf::rotate( moveVector, 180 + 2 * angle ) );
         collisionLeft = false;
+
+        // notify paddles, that a collision occured
+        leftPaddle->reflected( Side::LEFT );
+        rightPaddle->reflected( Side::LEFT );
     }
 
     if ( collisionRight )
     {
         const double angle = sf::getAngleBetween( moveVector, paddleDirectionVector );
-        sf::invert( sf::rotate( moveVector, 180 + 2 * angle ) );
+        sf::invert( sf::rotate( moveVector, 180 - 2 * angle + randomOffsetAngle( rng ) ) );
         collisionRight = false;
+
+        // notify paddles, that a collision occured
+        rightPaddle->reflected( Side::RIGHT );
     }
 
     // actually move the ball with the updated moveVector
@@ -132,7 +146,7 @@ void Ball::draw( sf::RenderWindow& window )
          ballVector.y + ballTolerance < leftPaddleVector.y + leftPaddle->getPaddleHeight() )
     {
         ballVector.x = leftPaddleVector.x + leftPaddle->getPaddleWidth();
-        collisionRight = true;
+        collisionLeft = true;
     }
 
     if ( ballVector.x + ballDiameter >= rightPaddleVector.x &&
@@ -141,7 +155,7 @@ void Ball::draw( sf::RenderWindow& window )
          ballVector.y + ballTolerance < rightPaddleVector.y + rightPaddle->getPaddleHeight() )
     {
         ballVector.x = rightPaddleVector.x - ballDiameter;
-        collisionLeft = true;
+        collisionRight = true;
     }
 
     // apply the adjusted position to the ball

@@ -27,6 +27,7 @@ public:
     virtual void eventHandler( const sf::Event& event ) override;
     virtual void draw( sf::RenderWindow& window ) override;
     virtual void scored( Side side );
+    virtual void reflected( Side side );
 
     void moveDown();
     void moveUp();
