@@ -1,17 +1,12 @@
 # Pong
 The game Pong with coop mode in its original arcade look.
+For single player experience, it comes with an A.I. as opponent which consists of a neural network and is trained with up to 2 full days of experience.
 
 ## Features
-* Full screen mode
 * Coop mode with arrow keys and W/S keys
-
-## To do's
-* Add settings view
-* Move full screen mode to settings view
-* Add settings to choose players (e.g. A.I. vs. arrow key player)
-
-## Wip
-* Adding A.I. (Neural Network) using OpenNN
+* A.I. vs. A.I.
+* Player vs. A.I. (Easy, Medium, Hard)
+* Full screen mode
 
 ## Dependencies
 * [SFML 2.5](https://github.com/SFML/sfml)
