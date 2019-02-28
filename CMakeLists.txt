@@ -44,7 +44,7 @@ find_package(SFML 2.5 COMPONENTS graphics)
 add_subdirectory(OpenNN)
 
 # add SFMLApp
-add_library(SFMLApp SHARED SFMLApp/Application.cpp SFMLApp/Application.hpp SFMLApp/Node.cpp SFMLApp/Node.hpp)
+add_library(SFMLApp STATIC SFMLApp/Application.cpp SFMLApp/Application.hpp SFMLApp/Node.cpp SFMLApp/Node.hpp)
 target_include_directories(SFMLApp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/SFMLApp)
 
 target_link_libraries(Pong PRIVATE sfml-graphics SFMLApp opennn)

@@ -133,7 +133,8 @@ void SettingsView::draw( sf::RenderWindow& window )
 
 std::string SettingsView::getInstructionsString()
 {
-    std::string tempText = "F - Toggle fullscreen\n\n";
+    std::string tempText = "F - Toggle fullscreen\n"
+                           "     (Not recommended for A.I.)\n\n";
 
     for ( int i = 0; i < enumeratingInstructions.size(); i++ )
     {

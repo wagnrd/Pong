@@ -19,6 +19,7 @@ void StartScreenView::init()
 
     const float windowMiddleWidth  = application->getWindowWidth() / 2;
     const float windowMiddleHeight = application->getWindowHeight() / 2;
+	// Fonts in this Project are from http://www.mattlag.com/bitfonts/
     fontTitle.loadFromFile( "../bit5x5.ttf" );
     fontInstruction.loadFromFile( "../bit9x9.otf" );
 
