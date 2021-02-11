@@ -10,7 +10,23 @@ For single player experience, it comes with an A.I. as opponent which consists o
 
 ## Dependencies
 * [SFML 2.5](https://github.com/SFML/sfml)
+* [Boost Math](https://www.boost.org)  
 * [SFMLApp](https://github.com/wagnrd/SFMLApp) (included in source code)
 * [SFMLMath](https://github.com/wagnrd/SFMLMath) (included in source code)
-* [OpenNN](https://github.com/Artelnics/OpenNN)
+* [OpenNN](https://github.com/Artelnics/OpenNN) (included in source code)
 * C++11 (C++17 is recommended)
+
+To satisfy the dependencies you need the following packages:
+
+```shell
+$ sudo apt install sudo apt install libsfml-dev libboost-math-dev
+```
+
+## Build
+
+```shell
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
