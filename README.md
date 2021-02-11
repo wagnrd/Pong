@@ -19,7 +19,7 @@ For single player experience, it comes with an A.I. as opponent which consists o
 To satisfy the dependencies you need the following packages:
 
 ```shell
-$ sudo apt install sudo apt install libsfml-dev libboost-math-dev
+$ sudo apt install libsfml-dev libboost-math-dev
 ```
 
 ## Build
