@@ -7,6 +7,7 @@
 #include "../../players/ArrowKeyPlayer.hpp"
 #include "../../players/NNAI.hpp"
 #include "../../players/NNAIPlayer.hpp"
+#include "../../players/WallPlayer.hpp"
 
 SettingsView::SettingsView( std::shared_ptr<PlayfieldView> playfieldView )
         : playfieldView( playfieldView )
@@ -93,7 +94,7 @@ void SettingsView::eventHandler( const sf::Event& event )
         {
             if ( currentInstruction != 4 )
             {
-                // Player vs. A.I. (Medium)
+                // Player vs. A.I. (Hard)
                 playfieldView->setLeftPaddle( std::make_shared<NNAIPlayer>( Side::LEFT, Skill::HARD ) );
                 playfieldView->setRightPaddle( std::make_shared<ArrowKeyPlayer>( Side::RIGHT ) );
                 currentInstruction = 4;
@@ -103,9 +104,9 @@ void SettingsView::eventHandler( const sf::Event& event )
         {
             if ( currentInstruction != 5 )
             {
-                // A.I. vs. A.I.
+                // A.I. solo live training
                 playfieldView->setLeftPaddle( std::make_shared<NNAI>( Side::LEFT ) );
-                playfieldView->setRightPaddle( std::make_shared<NNAI>( Side::RIGHT ) );
+                playfieldView->setRightPaddle( std::make_shared<WallPlayer>( Side::RIGHT ) );
                 currentInstruction = 5;
             }
         }
@@ -152,4 +153,3 @@ std::string SettingsView::getInstructionsString()
 
     return std::move( tempText );
 }
-

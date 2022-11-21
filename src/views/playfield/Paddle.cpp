@@ -4,15 +4,18 @@
 
 #include "Paddle.hpp"
 
-Paddle::Paddle( Side side )
-        : side( side )
-{
-}
+Paddle::Paddle( Side side) : Paddle(side, false)
+{}
+
+Paddle::Paddle( Side side, bool wall )
+        : side( side ), wall ( wall )
+{}
 
 void Paddle::init()
 {
     const float windowWidth  = application->getWindowWidth();
     const float windowHeight = application->getWindowHeight();
+    paddleHeight = wall ? windowHeight : defaultPaddleHeight;
 
     rectangle.setSize( sf::Vector2f( paddleWidth, paddleHeight ) );
 

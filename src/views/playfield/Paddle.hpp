@@ -12,9 +12,11 @@
 class Paddle : public Node {
     sf::RectangleShape rectangle;
     const float        paddleWidth  = 25;
-    const float        paddleHeight = 100;
+    const float        defaultPaddleHeight = 100;
+    float              paddleHeight;
     const float        wallOffset   = 20;
     const float        speed        = 15;
+    const bool         wall;
 
 protected:
     Side side;
@@ -23,6 +25,7 @@ protected:
 
 public:
     Paddle( Side side );
+    Paddle( Side side, bool wall );
     virtual void init() override;
     virtual void eventHandler( const sf::Event& event ) override;
     virtual void draw( sf::RenderWindow& window ) override;

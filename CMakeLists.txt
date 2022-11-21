@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.0)
 
 project(Pong)
 
@@ -34,7 +34,10 @@ add_executable(
         src/views/settings/SettingsView.cpp
         src/views/settings/SettingsView.hpp
         src/players/NNAIPlayer.cpp
-        src/players/NNAIPlayer.hpp src/players/Skill.hpp)
+        src/players/NNAIPlayer.hpp
+        src/players/WallPlayer.cpp
+        src/players/WallPlayer.hpp
+        src/players/Skill.hpp)
 
 # add SFML
 find_package(SFML 2.5 COMPONENTS graphics)
@@ -47,5 +50,3 @@ add_library(SFMLApp STATIC SFMLApp/Application.cpp SFMLApp/Application.hpp SFMLA
 target_include_directories(SFMLApp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/SFMLApp)
 
 target_link_libraries(Pong PRIVATE sfml-graphics SFMLApp opennn)
-
-

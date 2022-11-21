@@ -20,7 +20,7 @@ class SettingsView : public Node {
 
     const std::vector<std::string> enumeratingInstructions{ "Player vs. A.I. (Live training)", "Player vs. A.I. (Easy)",
                                                             "Player vs. A.I. (Medium)", "Player vs. A.I. (Hard)",
-                                                            "A.I. vs. A.I. (Live training)", "Player vs. Player" };
+                                                            "A.I. solo live training", "Player vs. Player" };
     int                            currentInstruction        = 1;
     const std::string              instructionStartIndicator = ">> ";
     const std::string              instructionEndIndicator   = " <<";
